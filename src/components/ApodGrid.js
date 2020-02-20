@@ -5,15 +5,14 @@ import ApodCard from "./ApodCard";
 
 export default function ApodGrid () {
 
-    const [data, setData] = useState([]);
+    const [data, setData] = useState({});
 
     useEffect(() => {
         
         axios.get(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY`)
           .then(response => {
-            console.log(response.data);
-            console.log(Object.entries(response.data))
-               setData(response.data);
+                console.log(response.data);
+                setData(response.data);
           })
           .catch(error => {
             console.log("Sorry, something went wrong", error);
@@ -23,14 +22,12 @@ export default function ApodGrid () {
     return (
         <div className="container">
             <div className="entry">
-                {data.map(topic => {
-                    return <ApodCard 
-                            title = {topic.title} 
-                            hdurl = {topic.hdurl} 
-                            date ={topic.date} 
-                            explanation = {topic.explanation}
+                <ApodCard 
+                            title = {data.title} 
+                            hdurl = {data.hdurl} 
+                            date ={data.date} 
+                            explanation = {data.explanation}
                     />;
-                })}
             </div>
         </div>
     );

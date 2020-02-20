@@ -1,7 +1,6 @@
 import React from "react";
 
 const ApodCard = props => {
-    console.log('ApodCard');
 
     return (
         <div className="apod-card" >
